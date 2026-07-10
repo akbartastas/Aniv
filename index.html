@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 3rd Anniversary ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --pink-pastel: #ffe3e8;
+            --pink-dark: #d15c7a;
+            --pink-light: #fff0f3;
+            --text-color: #5a4b51;
+            --accent-flower: #f3a4b7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--pink-light);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+            background-image: radial-gradient(rgba(243, 164, 183, 0.2) 1.5px, transparent 1.5px);
+            background-size: 30px 30px;
+        }
+
+        /* --- LAYAR AWAL / LOCK SCREEN --- */
+        #lock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffe3e8 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+            text-align: center;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .lock-box {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(209, 92, 122, 0.12);
+            border: 2px dashed var(--accent-flower);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .lock-box h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--pink-dark);
+            margin-bottom: 15px;
+        }
+
+        .lock-box p {
+            font-size: 0.9rem;
+            color: #7a686f;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .lock-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--pink-pastel);
+            border-radius: 50px;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+            color: var(--text-color);
+            transition: all 0.3s;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .lock-box input:focus {
+            border-color: var(--pink-dark);
+            box-shadow: 0 0 10px rgba(209, 92, 122, 0.1);
+        }
+
+        .lock-box button {
+            background: linear-gradient(135deg, #f3a4b7 0%, #d15c7a 100%);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(209, 92, 122, 0.3);
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .error-msg {
+            color: #e05c7b;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: none;
+            font-weight: 600;
+        }
+
+        /* --- KONTEN UTAMA --- */
+        #main-content {
+            opacity: 0;
+            display: none;
+            transition: opacity 1s ease;
+        }
+
+        .bg-decorations {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 50px;
+            height: 65px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            opacity: 0.6;
+            animation: floatUp 15s infinite linear;
+        }
+        
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 22px;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-bottom: 8px solid currentColor;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-120vh) rotate(10deg); opacity: 0; }
+        }
+
+        .hero { text-align: center; padding: 60px 20px 30px; }
+        .hero h1 { font-family: 'Dancing Script', cursive; font-size: 4rem; color: var(--pink-dark); }
+        .flower-banner { width: 200px; margin: 10px auto 20px; display: block; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px 60px; }
+        
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(209, 92, 122, 0.08);
+            text-align: center;
+            margin-bottom: 50px;
+            border: 2px dashed var(--accent-flower);
+        }
+
+        .card h2 { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: var(--pink-dark); }
+
+        /* Countdown */
+        .countdown-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 35px 0 15px;
+        }
+
+        .countdown-box { background: var(--pink-light); padding: 15px; border-radius: 20px; border: 1px solid var(--pink-pastel); }
+        .countdown-box .num { font-size: 2.2rem; font-weight: 600; color: var(--pink-dark); }
+        .countdown-box .label { font-size: 0.75rem; letter-spacing: 1px; color: #9c828b; }
+
+        /* Timeline Perjalanan Cinta */
+        .timeline-section { margin: 50px 0; position: relative; }
+        .timeline-section::before {
+            content: ''; position: absolute; top: 0; bottom: 0; left: 50%;
+            width: 2px; background: var(--accent-flower); transform: translateX(-50%);
+        }
+        .timeline-item { margin-bottom: 40px; position: relative; width: 50%; padding: 0 30px; }
+        .timeline-item.left { left: 0; text-align: right; }
+        .timeline-item.right { left: 50%; text-align: left; }
+        .timeline-dot {
+            position: absolute; top: 15px; width: 16px; height: 16px;
+            border-radius: 50%; background: var(--pink-dark); border: 3px solid white; z-index: 2;
+        }
+        .timeline-item.left .timeline-dot { right: -8px; }
+        .timeline-item.right .timeline-dot { left: -8px; }
+        
+        .timeline-content {
+            background: white; padding: 20px; border-radius: 20px;
+            border: 1px solid var(--pink-pastel);
+        }
+        .timeline-content h3 { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: var(--pink-dark); }
+
+        /* Tombol & Modal Surat Cinta */
+        .love-letter-btn {
+            background: linear-gradient(135deg, #f3a4b7 0%, #d15c7a 100%);
+            color: white; border: none; padding: 16px 40px; border-radius: 50px;
+            font-size: 1.1rem; cursor: pointer; display: inline-flex; margin: 30px 0;
+        }
+        
+        .modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(90, 75, 81, 0.4); backdrop-filter: blur(5px);
+            display: none; justify-content: center; align-items: center; z-index: 10000; padding: 20px;
+        }
+        .modal-content {
+            background: #fffbfb; max-width: 600px; padding: 40px; border-radius: 30px;
+            border: 3px double var(--accent-flower); position: relative;
+        }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 1.8rem; cursor: pointer; color: #a18892; }
+
+        /* Galeri Polaroid */
+        .gallery-title { text-align: center; font-family: 'Dancing Script', cursive; font-size: 3rem; color: var(--pink-dark); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; justify-items: center; }
+        .polaroid { background: white; padding: 16px 16px 24px 16px; box-shadow: 0 12px 28px rgba(0,0,0,0.06); width: 260px; transform: rotate(var(--r)); transition: 0.4s; }
+        .polaroid:hover { transform: scale(1.06) rotate(0deg); z-index: 5; }
+        .polaroid .photo-frame { height: 230px; overflow: hidden; position: relative; }
+        .polaroid img { width: 100%; height: 100%; object-fit: cover; }
+        .polaroid .caption { font-family: 'Dancing Script', cursive; font-size: 1.6rem; text-align: center; margin-top: 15px; color: #4a3e43; }
+
+        @media (max-width: 768px) {
+            .timeline-section::before { left: 20px; }
+            .timeline-item { width: 100%; padding-left: 45px; padding-right: 0; text-align: left !important; }
+            .timeline-item.right { left: 0; }
+            .timeline-dot { left: 12px !important; right: auto !important; }
+            .countdown-container { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AUDIO PLAYER -->
+    <audio id="bg-music" src="lagu.mp3" loop></audio>
+
+    <!-- LOCK SCREEN -->
+    <div id="lock-screen">
+        <div class="lock-box">
+            <h2>Hanya Untukmu... ✨</h2>
+            <p>Ada sebuah kejutan kecil yang disiapkan dengan sepenuh hati. Silakan masukkan kata sandi rahasia untuk membukanya.</p>
+            <div class="input-group">
+                <!-- Sandi saat ini: 100723 -->
+                <input type="password" id="password-input" placeholder="Masukkan Kata Sandi...">
+                <div class="error-msg" id="error-message">Hmm, sepertinya kata sandinya salah. Coba lagi ya sayang! ❤️</div>
+            </div>
+            <button onclick="checkPassword()">Buka Kejutan 🗝️</button>
+            <p style="font-size: 0.75rem; margin-top: 15px; font-style: italic; color: #a69299;">Petunjuk: Tanggal istimewa pernikahan kita (Format: DDMMYY)</p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main-content">
+        <div class="bg-decorations" id="balloon-container"></div>
+
+        <div class="hero">
+            <svg class="flower-banner" viewBox="0 0 100 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10,12 Q30,2 50,12 T90,12" stroke="#f3a4b7" stroke-width="0.7" stroke-dasharray="2 2"/>
+                <circle cx="30" cy="9" r="2.5" fill="#ffb6c1"/><circle cx="27.5" cy="9" r="1.5" fill="#fff0f5"/><circle cx="30" cy="9" r="1" fill="#d15c7a"/>
+                <circle cx="50" cy="12" r="3.5" fill="#ff69b4"/><circle cx="46.5" cy="12" r="2" fill="#ffe4e1"/><circle cx="50" cy="12" r="1.5" fill="#fff"/>
+                <circle cx="70" cy="9" r="2.5" fill="#ffb6c1"/><circle cx="67.5" cy="9" r="1.5" fill="#fff0f5"/><circle cx="70" cy="9" r="1" fill="#d15c7a"/>
+            </svg>
+            <h1>Happy 3rd Anniversary</h1>
+            <p>Our Journey of Love</p>
+        </div>
+
+        <div class="container">
+            <div class="card">
+                <h2>3 Tahun Penuh Kebahagiaan</h2>
+                <p>Selamat hari jadi pernikahan yang ke-3! Tiga tahun berjalan berdampingan, melewati berbagai cerita indah, tawa, dan impian bersama. Terima kasih telah menjadi partner terbaik dan pelengkap terindah dalam hidup ini.</p>
+                <div class="countdown-container">
+                    <div class="countdown-box"><div class="num" id="days">00</div><div class="label">Hari</div></div>
+                    <div class="countdown-box"><div class="num" id="hours">00</div><div class="label">Jam</div></div>
+                    <div class="countdown-box"><div class="num" id="minutes">00</div><div class="label">Menit</div></div>
+                    <div class="countdown-box"><div class="num" id="seconds">00</div><div class="label">Detik</div></div>
+                </div>
+            </div>
+
+            <div class="gallery-title">Cerita Perjalanan Kita</div>
+            <div class="timeline-section">
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Langkah Pertama</h3>
+                        <p>Awal di mana dua cerita berbeda memutuskan untuk berjalan di satu jalur yang sama. Menyatukan mimpi, menyelaraskan langkah, dan membangun fondasi komitmen.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Petualangan & Kenangan</h3>
+                        <p>Mulai dari obrolan hangat sepanjang perjalanan yang setiap hari kita lalui, hingga momen seru menikmati dinginnya malam saat camping di puncak gunung bersama. Setiap tempat menjadi saksi tawa kita.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Janji Suci Pernikahan</h3>
+                        <p>Hari luar biasa saat janji suci diucapkan di hadapan semua orang. Kamu resmi menjadi pelengkap hidupku, tempatku pulang, dan pelabuhan terakhirku.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <button class="love-letter-btn" onclick="openLetter()">Baca Surat Cinta Rahasia... 💌</button>
+            </div>
+
+            <div class="gallery-title">Galeri Kenangan Kita</div>
+            <div class="gallery-grid">
+                <div class="polaroid" style="--r: -3deg;"><div class="photo-frame"><img src="foto1.jpg"></div><div class="caption">Senyuman Pertama</div></div>
+                <div class="polaroid" style="--r: 2deg;"><div class="photo-frame"><img src="foto2.jpg"></div><div class="caption">Momen Bahagia</div></div>
+                <div class="polaroid" style="--r: -1deg;"><div class="photo-frame"><img src="foto3.jpg"></div><div class="caption">Tawa Bersama</div></div>
+                <div class="polaroid" style="--r: 4deg;"><div class="photo-frame"><img src="foto4.jpg"></div><div class="caption">Setiap Langkah</div></div>
+                <div class="polaroid" style="--r: -4deg;"><div class="photo-frame"><img src="foto5.jpg"></div><div class="caption">Petualangan Kita</div></div>
+                <div class="polaroid" style="--r: 1deg;"><div class="photo-frame"><img src="foto6.jpg"></div><div class="caption">Selamanya Bersama</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SURAT CINTA -->
+    <div class="modal" id="letter-modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeLetter()">&times;</span>
+            <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: #d15c7a; text-align: center;">Untuk Istriku Tercinta... 🌸</h2>
+            <p>Selamat hari jadi pernikahan yang ke-3, sayang.</p>
+            <p>Nggak terasa ya, sudah 3 tahun kita mengarungi bahtera rumah tangga bersama. Aku cuma mau bilang terima kasih banyak untuk segala kesabaranmu, senyumanmu yang selalu menenangkan, dan ketulusanmu merawat kebersamaan kita selama ini.</p>
+            <p>Aku bersyukur banget punya kamu sebagai teman hidup, tempat berbagi cerita, dan partner terbaik dalam segala situasi. Maafkan jika selama ini aku masih banyak kekurangan, tapi janjiku akan selalu berusaha membuatmu bahagia hari demi hari.</p>
+            <p>Semoga di tahun-tahun ke depan, cinta kita tetap kokoh, dipenuhi berkah, tawa yang gak pernah habis, dan impian-impian kita bisa terwujud satu per satu. Aku sayang kamu sekarang, besok, dan selamanya. ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            if (input === '080723' || input.toLowerCase() === 'istriku') {
+                document.getElementById('lock-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('lock-screen').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'block';
+                    setTimeout(() => { document.getElementById('main-content').style.opacity = '1'; }, 50);
+                    document.getElementById('bg-music').play().catch(e => console.log("Auto-play dicegah browser."));
+                }, 800);
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+
+        function openLetter() { document.getElementById('letter-modal').style.display = 'flex'; }
+        function closeLetter() { document.getElementById('letter-modal').style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == document.getElementById('letter-modal')) closeLetter(); }
+
+        const balloonContainer = document.getElementById('balloon-container');
+        const colors = ['#ffb6c1', '#ffc0cb', '#ff69b4', '#ffe4e1', '#fff0f5'];
+        setInterval(() => {
+            if (document.getElementById('main-content').style.display === 'none') return;
+            const b = document.createElement('div');
+            b.className = 'balloon';
+            const size = Math.random() * 20 + 35;
+            b.style.width = size + 'px'; b.style.height = (size * 1.3) + 'px';
+            b.style.left = Math.random() * 100 + 'vw';
+            b.style.animationDuration = (Math.random() * 8 + 12) + 's';
+            b.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloonContainer.appendChild(b);
+            setTimeout(() => b.remove(), 20000);
+        }, 2500);
+
+        const weddingDate = new Date("2023-07-08T00:00:00").getTime(); 
+        setInterval(() => {
+            const diff = new Date().getTime() - weddingDate;
+            document.getElementById("days").innerText = String(Math.floor(diff / 86400000)).padStart(2, '0');
+            document.getElementById("hours").innerText = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+        }, 1000);
+    </script>
+</body>
+</html>
